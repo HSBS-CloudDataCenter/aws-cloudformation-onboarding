@@ -2,14 +2,14 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: "Recursos Default IAM"
 
 Resources:
-  Grupo-de-Usuarios:
+  GrupodeUsuarios:
     Type: AWS::IAM::Group
     Properties:
         GroupName: HSBS
         ManagedPolicyArns: 
           - arn:aws:iam::aws:policy/AdministratorAccess
   
-  Usuario-Felipe:
+  UsuarioFelipe:
     Type: AWS::IAM::User
     Properties:
       UserName: hsbs.felipe
@@ -17,7 +17,7 @@ Resources:
       Groups:
         - HSBS
 
-  Usuario-Reivson:
+  UsuarioReivson:
     Type: AWS::IAM::User
     Properties:
       UserName: hsbs.reivson
@@ -25,7 +25,7 @@ Resources:
       Groups:
         - HSBS
 
-  Usuario-Admin:
+  UsuarioAdmin:
     Type: AWS::IAM::User
     Properties:
       UserName: hsbs.admin
@@ -33,13 +33,11 @@ Resources:
       Groups:
         - HSBS
         
-  Role-de-Acesso-Condicional:
+  RoledeAcessoCondicional:
     Type: AWS::IAM::Role
     Properties:
-      RoleName:
-        - datacenter-management
-      Description: 
-        - Asssuming hole as admin from HSBS account.
+      RoleName: "datacenter-management"
+      Description: "Asssuming hole as admin from HSBS account."
       ManagedPolicyArns: 
         - arn:aws:iam::aws:policy/PowerUserAccess     
       MaxSessionDuration: 7200
