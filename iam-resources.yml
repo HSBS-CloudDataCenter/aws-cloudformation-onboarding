@@ -40,6 +40,8 @@ Resources:
         - datacenter-management
       Description: 
         - Asssuming hole as admin from HSBS account.
+      ManagedPolicyArns: 
+        - arn:aws:iam::aws:policy/PowerUserAccess     
       MaxSessionDuration: 7200
       AssumeRolePolicyDocument: {
         "Version": "2012-10-17",
