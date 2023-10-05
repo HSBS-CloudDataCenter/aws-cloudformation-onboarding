@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Recursos Default IAM"
+
+Resources:
+  CriandoGrupoDeUsuarios:
+    Type: AWS::IAM::Group
+    Properties:
+        GroupName: HSBS
+        ManagedPolicyArns: 
+          - arn:aws:iam::aws:policy/AdministratorAccess
+  
+  CriandoUsuarioFelipe:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: hsbs.felipe
+      Path: /
+      Groups:
+        - HSBS
+
+  CriandoUsuarioReivson:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: hsbs.reivson
+      Path: /
+      Groups:
+        - HSBS
+
+  CriandoUsuarioAdmin:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: hsbs.admin
+      Path: /
+      Groups:
+        - HSBS
+        
+  CriandoRoleDeAcessoCondicional:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName:
+        - datacenter-management
+      Description: 
+        - Asssuming hole as admin from HSBS account.
+      MaxSessionDuration: 7200
+      AssumeRolePolicyDocument: {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "AWS": "arn:aws:iam::036544166405:root"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                    "Bool": {
+                        "aws:MultiFactorAuthPresent": "true"
+                    }
+                }
+            }
+        ]
+      }
