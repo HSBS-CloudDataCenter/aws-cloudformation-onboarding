@@ -2,6 +2,12 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: "Recursos Default IAM"
 
 Resources:
+
+  AccountAlias:
+  Type: AWS::SupportApp::AccountAlias
+  Properties: 
+    AccountAlias: MUDAR ANTES DE ENVIAR AO CLIENTE
+
   GrupodeUsuarios:
     Type: AWS::IAM::Group
     Properties:
@@ -13,7 +19,6 @@ Resources:
     Type: AWS::IAM::User
     Properties:
       UserName: hsbs.felipe
-      Path: /
       Groups:
         - HSBS
 
@@ -21,7 +26,6 @@ Resources:
     Type: AWS::IAM::User
     Properties:
       UserName: hsbs.reivson
-      Path: /
       Groups:
         - HSBS
 
@@ -29,7 +33,6 @@ Resources:
     Type: AWS::IAM::User
     Properties:
       UserName: hsbs.admin
-      Path: /
       Groups:
         - HSBS
         
